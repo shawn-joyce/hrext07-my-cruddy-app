@@ -1,48 +1,52 @@
-/*
-Init app
-interact with DOM
-interact with localstorage
 
- */
+//this is where we jquery
+$(document).ready(function() {
 
-$(document).ready(function(){
-  // this is where we jquery
-  //var keyData = 'ourKey'; // going to need to make this dynamic?
+  //READ/ WRITE
+  //http://api.jquery.com/html/
+  //https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem
+  $("#showText").html(localStorage.getItem("key"));
 
+  //https://api.jquery.com/submit/
+  $(".addText").submit(function(event) {
 
-  $('.btn-add').on('click', function(e){
-    console.log(e);
-    var keyData = $('.input-key').val();
-    var valueData = $('.input-value').val();
-    // write to db
-    localStorage.setItem(keyData, valueData);
-    // read from db
-    var displayText = keyData + ' | ' + localStorage.getItem(keyData);
-    // this only displays the last one? might want to switch to html
-    // and append a div
-    // <div class="display-data-item" data-keyValue="keyData">valueData</div>
-    // if you use backticks ` you can use ${templateLiterals}
-    // TODO make this vars make sense across the app
-    $('.container-data').html('<div class="display-data-item" data-keyValue="'+ keyData +'">'+valueData+'</div>');
-    $('.input-key').val('');
-    $('.input-value').val('');
+    //http://api.jquery.com/val/
+    var listing = $("#listing").val();
+    var checkbox = "<li><input class='checkbox' type='checkbox'>";
+    var remove = "<a class='remove'> delete </a></li>";
+
+    if (listing) {
+      $("#showText").append(checkbox + listing + remove);
+
+      //https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
+      localStorage.setItem("key", $("#showText").html());
+      $(".text-input").val("");
+    }
   });
 
+  //UPDATE
+  $(document).on("change", ".checkbox", function() {
+    if ($(this).attr("checked")) {
+      $(this).removeAttr("checked");
+    } else {
+      $(this).attr("checked", "checked");
+    }
+    $(this)
 
-  // update db
-    // need to expand when  more than 1 item is added
+      //https://api.jquery.com/parent/
+      .parent()
+      
+      //http://api.jquery.com/toggleclass/
+      .toggleClass("strike");
 
-  // delete item
-  $('.container-data').on('click', '.display-data-item', function(e){
-    console.log(e.currentTarget.dataset.keyvalue);
-    var keyData = e.currentTarget.dataset.keyvalue;
-    localStorage.removeItem(keyData);
-    $('.container-data').text('');
+    localStorage.setItem("key", $("#showText").html());
   });
-  // delete all?
-  $('.btn-clear').click(function(){
-    localStorage.clear();
-    $('.container-data').text('');
-  });
 
+  //DELETE
+  $(document).on("click", ".remove", function() {
+    $(this)
+      .parent()
+      .remove();
+    localStorage.setItem("key", $("#showText").html());
+  });
 });

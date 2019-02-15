@@ -1,0 +1,58 @@
+/*ELEMENTS*/
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2019/01/05/08/29/dog-3914695_1280.jpg");
+}
+
+input[type="checkbox"] {
+  width: 30px;
+}
+
+ul {
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+li {
+  height: 40px;
+  margin-top: 17px;
+  font-size: 18px;
+  list-style: none
+}
+h1{
+  Font-Family: 'Playfair Display', Serif;
+  Font-Size: 34px;
+}
+
+/*CLASSES*/
+.addText {
+  width: 175px;
+  margin: 0 auto; 
+}
+
+.listContainer {
+  background: rgba(204, 204, 204, 0.5);;
+  width: auto;
+  height: auto;
+  Font-Family: 'Source Sans Pro', Sans-Serif;
+  Font-Size: 16px;
+}
+
+.container {
+  margin: auto;
+  min-width: auto;
+  width: 45%;
+  text-align: left;
+  color: #3b3b3b;
+  padding: 40px;
+}
+
+.remove {
+  float: right;
+  cursor: pointer;
+  width: 65px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
